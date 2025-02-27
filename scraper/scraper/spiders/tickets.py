@@ -17,8 +17,13 @@ class TicketSpider(scrapy.Spider):
         # page = response.url.split("/")[-1]
         # filename = f"quotes-{page}.html"
         filename = "kendrick.html"
-        Path(filename).write_bytes(response.body)
+        scripts = response.css('script :: text').getall()
+        
+        
+        Path(filename).write_bytes(scripts)
         self.log(f"Saved file {filename}")
+        
+                # extend script to add log file that saves info for every crawl
         
     # def parse(self, response):
     #     for quote in response.css("div.quote"):
