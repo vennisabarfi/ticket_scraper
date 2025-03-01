@@ -39,9 +39,13 @@ class TicketSpider(scrapy.Spider):
     # Extract all items under the <main> tag
         items = main_content.css('*').getall()  # * selects all elements under <main>
         path2 = "test.html"
-    
-        Path(path2).write_bytes(main_content)
-        Path(filename).write_bytes(response.body)
+
+        # for item in items:
+        #     print(item)
+        items_str = "\n".join(items)
+        
+        Path(path2).write_text(items_str)
+        # Path(filename).write_bytes(response.body)
         self.log(f"Saved file {filename}")
     # def parse(self, response):
     #     for quote in response.css("div.quote"):
