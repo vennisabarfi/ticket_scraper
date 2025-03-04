@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import scrapy
+import chompjs
 
 
 class TicketSpider(scrapy.Spider):
@@ -13,40 +14,47 @@ class TicketSpider(scrapy.Spider):
     ]
         
     
-    # def parse(self, response):
-    #     # page = response.url.split("/")[-1]
-    #     # filename = f"quotes-{page}.html"
-    #     filename = "kendrick.html"
-    #     # work on this
-    #     # class="sc-1g6xjqc-0 jKmtvh"
-    #     scripts = response.css('div.sc-1g6xjqc-0 jKmtvh').getall()
-        
-        
-    #     Path(filename).write_bytes(scripts)
-    #     self.log(f"Saved file {filename}")
-        
-                # extend script to add log file that saves info for every crawl
-        
     def parse(self, response):
         # page = response.url.split("/")[-1]
         # filename = f"quotes-{page}.html"
-        filename = "beyonce.json"
+        filename = "test.txt"
         # work on this
         # class="sc-1g6xjqc-0 jKmtvh"
-        scripts = response.css('div.sc-1g6xjqc-0 jKmtvh').getall()
-        main_content = response.css('main#main-content')
-
-    # Extract all items under the <main> tag
-        items = main_content.css('*').getall()  # * selects all elements under <main>
-        path2 = "test.html"
-
-        # for item in items:
-        #     print(item)
-        items_str = "\n".join(items)
+        scripts = response.css('div.sc-1g6xjqc-0jKmtvh').getall()
         
-        Path(path2).write_text(items_str)
-        # Path(filename).write_bytes(response.body)
+        javascript = response.css("script::text").get()
+        data = chompjs.parse_js_object(javascript)
+        
+        
+        Path(filename).write_bytes(bytes(data))
+        
         self.log(f"Saved file {filename}")
+        
+                # extend script to add log file that saves info for every crawl
+        
+    # def parse(self, response):
+    #     # page = response.url.split("/")[-1]
+    #     # filename = f"quotes-{page}.html"
+    #     filename = "beyonce.json"
+    #     # work on this
+    #     # class="sc-1g6xjqc-0 jKmtvh"
+    #     scripts = response.css('div.sc-5b932363-0 j0DkC').getall()
+    #     main_content = response.css('main#main-content')
+
+    # # Extract all items under the <main> tag
+    #     items = main_content.css('*').getall()  # * selects all elements under <main>
+    #     path2 = "tests.html"
+
+    #     # for item in items:
+    #     #     print(item)
+    #     items_str = "\n".join(items)
+    #     scripts_str = "\n".join(scripts)
+        
+    #     print(scripts_str)
+        
+    #     Path(path2).write_text(items_str)
+    #     # Path(filename).write_bytes(response.body)
+    #     self.log(f"Saved file {filename}")
     # def parse(self, response):
     #     for quote in response.css("div.quote"):
     #         yield {
