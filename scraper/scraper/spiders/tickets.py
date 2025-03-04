@@ -3,6 +3,9 @@ from pathlib import Path
 import scrapy
 import chompjs
 
+# check this out:
+# https://stackoverflow.com/questions/68958514/pip-install-chompjs-in-scrapy-virtual-environment-under-anaconda-showing-errors
+
 
 class TicketSpider(scrapy.Spider):
     name = "tickets"
