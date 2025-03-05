@@ -1,0 +1,32 @@
+{
+  "version": "0.1",
+  "page": {
+    "pageInfo": {
+      "destinationURL": "https://www.ticketmaster.com/search?q=beyonce",
+      "platform": "iccp-discovery",
+      "isTestEntity": "0",
+      "domain": "TM_US",
+      "language": "en-us",
+      "environment": "production",
+      "publisher": "ticketmaster",
+      "publisherDivision": "US",
+      "pageChannel": "interest",
+      "pageVariant": "",
+      "pageExperience": "iCCP Discovery: SRP",
+      "onsiteSearchStatus": "hit",
+      "onsiteSearchTerm": "beyonce",
+      "onsiteSearchSuggestTerm": "beyonce",
+      "geoRegion": "All of United States",
+      "pageName": "TM_US: iCCP Search Results",
+      "pageType": "iCCP Search Results",
+      "pageId": "TM_US: iCCP Search Results: Top Suggestions: Results"
+    },
+    "attributes": {
+      "modulesAvailable": ""
+    },
+    "category": {
+      "organization": "TM"
+    }
+  },
+  "pageInstanceID": "TM_US: iCCP Search Results"
+}

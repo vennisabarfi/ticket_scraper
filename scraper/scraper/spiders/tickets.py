@@ -21,16 +21,22 @@ class TicketSpider(scrapy.Spider):
     def parse(self, response):
         # page = response.url.split("/")[-1]
         # filename = f"quotes-{page}.html"
-        filename = "test.txt"
+        filename = "test.json"
         # work on this
         # class="sc-1g6xjqc-0 jKmtvh"
         scripts = response.css('div.sc-1g6xjqc-0jKmtvh').getall()
+        
         
         javascript = response.css("script::text").get()
         data = chompjs.parse_js_object(javascript)
         data_convert = json.dumps(data, indent=2)
         print(data_convert)
-        Path(filename).write_bytes((data_convert))
+        
+        
+        
+        # using write_text instead of write_bytes for now
+        Path(filename).write_text((data_convert))
+        
         
         self.log(f"Saved file {filename}")
         
