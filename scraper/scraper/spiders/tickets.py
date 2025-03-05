@@ -2,7 +2,8 @@ from pathlib import Path
 
 import scrapy
 import chompjs
-
+import json 
+import base64
 # check this out:
 # https://stackoverflow.com/questions/68958514/pip-install-chompjs-in-scrapy-virtual-environment-under-anaconda-showing-errors
 
@@ -27,9 +28,9 @@ class TicketSpider(scrapy.Spider):
         
         javascript = response.css("script::text").get()
         data = chompjs.parse_js_object(javascript)
-        
-        
-        Path(filename).write_bytes(bytes(data))
+        data_convert = json.dumps(data, indent=2)
+        print(data_convert)
+        Path(filename).write_bytes((data_convert))
         
         self.log(f"Saved file {filename}")
         
